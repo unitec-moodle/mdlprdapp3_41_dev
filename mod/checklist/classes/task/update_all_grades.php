@@ -15,24 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package   turnitintooltwo
- * @copyright 2012 iParadigms LLC
+ * Task to update grades for all checklists on the site
+ *
+ * @package   mod_checklist
+ * @copyright 2022 Davo Smith, Synergy Learning
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace mod_checklist\task;
 
-if (empty($plugin)) {
-    $plugin = new StdClass();
-}
-
-$plugin->version   = 2022051201;
-$plugin->release   = "3.1+";
-$plugin->requires  = 2016052300;
-$plugin->component = 'mod_turnitintooltwo';
-$plugin->maturity  = MATURITY_STABLE;
-
-global $CFG;
-$plugin->cron = 0;
-if (!empty($CFG->version)) {
-    $plugin->cron = ($CFG->version > 2014051200) ? 0 : 1800;
+/**
+ * Update all grades
+ */
+class update_all_grades extends \core\task\adhoc_task {
+    /**
+     * Update all grades for all users on all checklists on the site.
+     * @return void
+     */
+    public function execute(): void {
+        global $CFG;
+        require_once($CFG->dirroot.'/mod/checklist/lib.php');
+        checklist_update_all_grades();
+    }
 }

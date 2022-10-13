@@ -29,6 +29,11 @@ require_once(__DIR__ . '/lib.php');
 $THEME->name = 'boost_comp_it';
 $THEME->sheets = [];
 $THEME->editor_sheets = [];
+
+//add addtional css sheets here
+$THEME->sheets = array('legacy');
+
+
 $THEME->editor_scss = ['editor'];
 $THEME->usefallback = true;
 $THEME->scss = function($theme) {

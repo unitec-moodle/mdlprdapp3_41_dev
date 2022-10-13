@@ -27,7 +27,11 @@ defined('MOODLE_INTERNAL') || die();
 
 $THEME->name = 'classic_var_01';
 
+// retain this line to retain branding settings
 $THEME->sheets = [];
+
+//add addtional css sheets here
+$THEME->sheets = array('legacy');
 
 // additional javascript - note: this does not work in Boost
 $THEME->javascripts_footer = array('customjssettings');

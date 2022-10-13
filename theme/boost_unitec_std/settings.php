@@ -26,6 +26,14 @@ if ($ADMIN->fulltree) {
     $settings = new theme_boost_unitec_std_admin_settingspage_tabs('themesettingboost_unitec_std', get_string('configtitle', 'theme_boost_unitec_std'));
     $page = new admin_settingpage('theme_boost_unitec_std_general', get_string('generalsettings', 'theme_boost_unitec_std'));
 
+    // Unaddable blocks.
+    // Blocks to be excluded when this theme is enabled in the "Add a block" list: Administration, Navigation, Courses and
+    // Section links.
+    $default = 'navigation,settings,course_list,section_links';
+    $setting = new admin_setting_configtext('theme_boost_unitec_std/unaddableblocks',
+        get_string('unaddableblocks', 'theme_boost_unitec_std'), get_string('unaddableblocks_desc', 'theme_boost_unitec_std'), $default, PARAM_TEXT);
+    $page->add($setting);
+
     // Preset.
     $name = 'theme_boost_unitec_std/preset';
     $title = get_string('preset', 'theme_boost_unitec_std');
@@ -78,6 +86,14 @@ if ($ADMIN->fulltree) {
     $title = get_string('backgroundimage', 'theme_boost_unitec_std');
     $description = get_string('backgroundimage_desc', 'theme_boost_unitec_std');
     $setting = new admin_setting_configstoredfile($name, $title, $description, 'backgroundimage');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Login Background image setting.
+    $name = 'theme_boost_unitec_std/loginbackgroundimage';
+    $title = get_string('loginbackgroundimage', 'theme_boost_unitec_std');
+    $description = get_string('loginbackgroundimage_desc', 'theme_boost_unitec_std');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'loginbackgroundimage');
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 

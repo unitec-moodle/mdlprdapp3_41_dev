@@ -54,7 +54,7 @@
 {{> core/local/toast/wrapper}}
 
 {{{ output.standard_top_of_body_html }}}
-<div id="page" {{#hasfakeblocks}}class="has-fake-blocks"{{/hasfakeblocks}}>
+<div id="page" name="embedded" {{#hasfakeblocks}}class="has-fake-blocks"{{/hasfakeblocks}}>
     {{#hasfakeblocks}}
         <section class="embedded-blocks" aria-label="{{#str}}blocks{{/str}}">
             {{{ fakeblocks }}}

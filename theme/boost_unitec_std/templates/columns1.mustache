@@ -45,11 +45,14 @@
 
     {{{ output.standard_top_of_body_html }}}
 
-    <div id="page" class="container-fluid d-print-block">
+    <div id="page" name="1col" class="container-fluid d-print-block">
         <div id="page-content" class="row pb-3 d-print-block">
             <div id="region-main-box" class="col-12">
                 <section id="region-main" aria-label="{{#str}}content{{/str}}">
                     {{{ output.course_content_header }}}
+                    {{#headercontent}}
+                        {{> core/activity_header }}
+                    {{/headercontent}}
                     {{{ output.main_content }}}
                     {{{ output.activity_navigation }}}
                     {{{ output.course_content_footer }}}

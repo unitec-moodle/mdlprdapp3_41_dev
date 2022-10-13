@@ -31,10 +31,12 @@ $string['brandcolor'] = 'Brand colour';
 $string['brandcolor_desc'] = 'The accent colour.';
 $string['bootswatch'] = 'Bootswatch';
 $string['bootswatch_desc'] = 'A bootswatch is a set of Bootstrap variables and css to style Bootstrap';
-$string['choosereadme'] = 'boost_unitec_std is a modern highly-customisable theme. This theme is intended to be used directly, or as a parent theme when creating new themes utilising Bootstrap 4.';
+$string['choosereadme'] = 'Unitec Standard Boost is a modern highly-customisable theme. This theme is intended to be used directly, or as a parent theme when creating new themes utilising Bootstrap 4.';
 $string['currentinparentheses'] = '(current)';
 $string['configtitle'] = 'Unitec Standard Boost';
 $string['generalsettings'] = 'General settings';
+$string['loginbackgroundimage'] = 'Login page background image';
+$string['loginbackgroundimage_desc'] = 'The image to display as a background for the login page.';
 $string['nobootswatch'] = 'None';
 $string['pluginname'] = 'Unitec Standard Boost';
 $string['presetfiles'] = 'Additional theme preset files';
@@ -53,10 +55,6 @@ $string['region-side-pre'] = 'Right';
 -----------------------*/
 //Top block region
 $string['region-top-fullwidth'] = 'Below Header';
-//Top block region
-$string['region-upper-fullwidth'] = 'Above Sections';
-//Bottom block region
-$string['region-lower-fullwidth'] = 'Below Sections';
 //Bottom block region
 $string['region-bottom-fullwidth'] = 'Above Footer';
 //Top Nav Drawer region
@@ -64,10 +62,22 @@ $string['region-upper-navdrawer'] = 'Nav-Drawer Top';
 //Bottom Nav Drawer region
 $string['region-lower-navdrawer'] = 'Nav-Drawer Bottom';
 
+// My Courses custom menu dropdown
+$string['mycourses'] = 'My Courses Menu';
+
+
+$string['showfooter'] = 'Show footer';
+$string['unaddableblocks'] = 'Unneeded blocks';
+$string['unaddableblocks_desc'] = 'The blocks specified are not needed when using this theme and will not be listed in the \'Add a block\' menu.';
+$string['privacy:metadata:preference:draweropenblock'] = 'The user\'s preference for hiding or showing the drawer with blocks.';
+$string['privacy:metadata:preference:draweropenindex'] = 'The user\'s preference for hiding or showing the drawer with course index.';
 $string['privacy:metadata:preference:draweropennav'] = 'The user\'s preference for hiding or showing the drawer menu navigation.';
+$string['privacy:drawerindexclosed'] = 'The current preference for the index drawer is closed.';
+$string['privacy:drawerindexopen'] = 'The current preference for the index drawer is open.';
+$string['privacy:drawerblockclosed'] = 'The current preference for the block drawer is closed.';
+$string['privacy:drawerblockopen'] = 'The current preference for the block drawer is open.';
 $string['privacy:drawernavclosed'] = 'The current preference for the navigation drawer is closed.';
 $string['privacy:drawernavopen'] = 'The current preference for the navigation drawer is open.';
-$string['totop'] = 'Go to top';
 
-// My Courses custom menu dropdown
-$string['mycourses'] = 'My Courses';
+// Deprecated since Moodle 4.0.
+$string['totop'] = 'Go to top';

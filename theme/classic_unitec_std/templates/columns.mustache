@@ -46,7 +46,7 @@
         "haspostblocks":true
     }
 }}
-{{> theme_classic_unitec_std/head }}
+{{> theme_boost/head }}
 
 <body {{{ bodyattributes }}}>
 
@@ -54,11 +54,11 @@
 
     {{{ output.standard_top_of_body_html }}}
 
-    {{>theme_classic_unitec_std/navbar}}  
-    
-    <div id="page" name="3col" class="container-fluid d-print-block"> 
-    
-                   {{{ output.full_header }}}
+    {{>theme_classic_unitec_std/navbar}}
+
+    <div id="page" name="3col" class="container-fluid d-print-block">
+        {{{ output.full_header }}}
+        
                 <!-- ADDITIONAL BLOCK START -->
                 {{#hastopfullwidth}}
                 <section data-region="blocks-column" class="top-fullwidth">
@@ -66,17 +66,11 @@
                 </section>
                 {{/hastopfullwidth}}
                 <!-- ADDITIONAL BLOCK END -->
-
-          
+         
 
         <div id="page-content" class="row {{#haspreblocks}} blocks-pre {{/haspreblocks}} {{#haspostblocks}} blocks-post {{/haspostblocks}} d-print-block">
             <div id="region-main-box" class="region-main">
-                {{#hasregionmainsettingsmenu}}
-                <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
-                    <div> {{{ output.region_main_settings_menu }}} </div>
-                </div>
-                {{/hasregionmainsettingsmenu}}
-                <section id="region-main" class="region-main-content" aria-label="{{#str}}content{{/str}}">
+                
                     
                          <!-- ADDITIONAL BLOCK START -->
                         {{#hasupperfullwidth}}
@@ -85,11 +79,21 @@
                         </section>
                         {{/hasupperfullwidth}}
                         <!-- ADDITIONAL BLOCK END -->             
+                
+                {{#hasregionmainsettingsmenu}}
+                <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
+                    <div> {{{ output.region_main_settings_menu }}} </div>
+                </div>
+                {{/hasregionmainsettingsmenu}}
+                <section id="region-main" class="region-main-content" aria-label="{{#str}}content{{/str}}">
                                         
                     {{#hasregionmainsettingsmenu}}
                         <div class="region_main_settings_menu_proxy"></div>
                     {{/hasregionmainsettingsmenu}}
                     {{{ output.course_content_header }}}
+                    {{#headercontent}}
+                        {{> core/activity_header }}
+                    {{/headercontent}}
                     {{{ output.main_content }}}
                     {{{ output.activity_navigation }}}
                     {{{ output.course_content_footer }}}
@@ -116,7 +120,15 @@
                 </section>
             </div>
         </div>
+                <!-- ADDITIONAL BLOCK START -->
+                {{#hasbottomfullwidth}}
+                <section data-region="blocks-column" class="d-print-none bottom-fullwidth">
+                    {{{ bottomfullwidthblocks }}}
+                </section>
+                {{/hasbottomfullwidth}}
+                <!-- ADDITIONAL BLOCK END -->
     </div>
+
     {{{ output.standard_after_main_region_html }}}
     {{> theme_classic_unitec_std/footer }}
 </div>
@@ -124,7 +136,7 @@
 </body>
 </html>
 {{#js}}
-M.util.js_pending('theme_boost_var_01/loader');
+M.util.js_pending('theme_boost/loader');
 require(['theme_boost/loader'], function() {
     M.util.js_complete('theme_boost/loader');
 });

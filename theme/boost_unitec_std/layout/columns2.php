@@ -27,25 +27,16 @@ defined('MOODLE_INTERNAL') || die();
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
 require_once($CFG->libdir . '/behat/lib.php');
 
-if (isloggedin()) {
-    $navdraweropen = (get_user_preferences('drawer-open-nav', 'true') == 'true');
-} else {
-    $navdraweropen = false;
-}
+// Add block button in editing mode.
+$addblockbutton = $OUTPUT->addblockbutton();
+
 $extraclasses = [];
-if ($navdraweropen) {
-    $extraclasses[] = 'drawer-open-left';
-}
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
-$hasblocks = strpos($blockshtml, 'data-block=') !== false;
+$hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
 // Additional block areas -- MH
 $topfullwidthtml = $OUTPUT->blocks('top-fullwidth');
 $hastopfullwidth = strpos($topfullwidthtml, 'data-block=') !== false;
-$upperfullwidthhtml = $OUTPUT->blocks('upper-fullwidth');
-$hasupperfullwidth = strpos($upperfullwidthhtml, 'data-block=') !== false;
-$lowerfullwidthhtml = $OUTPUT->blocks('lower-fullwidth');
-$haslowerfullwidth = strpos($lowerfullwidthhtml, 'data-block=') !== false;
 $bottomfullwidthhtml = $OUTPUT->blocks('bottom-fullwidth');
 $hasbottomfullwidth = strpos($bottomfullwidthhtml, 'data-block=') !== false;
 $uppernavdrawerhtml = $OUTPUT->blocks('upper-navdrawer');
@@ -53,9 +44,29 @@ $hasuppernavdrawer = strpos($uppernavdrawerhtml, 'data-block=') !== false;
 $lowernavdrawerhtml = $OUTPUT->blocks('lower-navdrawer');
 $haslowernavdrawer = strpos($lowernavdrawerhtml, 'data-block=') !== false;
 // End of additional block areas -- MH
-$buildregionmainsettings = !$PAGE->include_region_main_settings_in_header_actions();
+
+$secondarynavigation = false;
+$overflow = '';
+if ($PAGE->has_secondary_navigation()) {
+    $tablistnav = $PAGE->has_tablist_secondary_navigation();
+    $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);
+    $secondarynavigation = $moremenu->export_for_template($OUTPUT);
+    $overflowdata = $PAGE->secondarynav->get_overflow_menu_data();
+    if (!is_null($overflowdata)) {
+        $overflow = $overflowdata->export_for_template($OUTPUT);
+    }
+}
+
+$primary = new core\navigation\output\primary($PAGE);
+$renderer = $PAGE->get_renderer('core');
+$primarymenu = $primary->export_for_template($renderer);
+$buildregionmainsettings = !$PAGE->include_region_main_settings_in_header_actions()  && !$PAGE->has_secondary_navigation();
 // If the settings menu will be included in the header then don't add it here.
 $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settings_menu() : false;
+
+$header = $PAGE->activityheader;
+$headercontent = $header->export_for_template($renderer);
+
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
@@ -64,10 +75,6 @@ $templatecontext = [
     // Additional block areas -- MH
     'topfullwidthblocks' => $topfullwidthtml,
     'hastopfullwidth' => $hastopfullwidth,
-    'upperfullwidthblocks' => $upperfullwidthhtml,
-    'hasupperfullwidth' => $hasupperfullwidth,
-    'lowerfullwidthblocks' => $lowerfullwidthhtml,
-    'haslowerfullwidth' => $haslowerfullwidth,
     'bottomfullwidthblocks' => $bottomfullwidthhtml,
     'hasbottomfullwidth' => $hasbottomfullwidth,
     'uppernavdrawerblocks' => $uppernavdrawerhtml,
@@ -75,14 +82,18 @@ $templatecontext = [
     'lowernavdrawerblocks' => $lowernavdrawerhtml,
     'haslowernavdrawer' => $haslowernavdrawer,
     // End of additional block areas -- MH
+    
     'bodyattributes' => $bodyattributes,
-    'navdraweropen' => $navdraweropen,
+    'primarymoremenu' => $primarymenu['moremenu'],
+    'secondarymoremenu' => $secondarynavigation ?: false,
+    'mobileprimarynav' => $primarymenu['mobileprimarynav'],
+    'usermenu' => $primarymenu['user'],
+    'langmenu' => $primarymenu['lang'],
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
-    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
+    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
+    'headercontent' => $headercontent,
+    'overflow' => $overflow,
+    'addblockbutton' => $addblockbutton,
 ];
 
-$nav = $PAGE->flatnav;
-$templatecontext['flatnavigation'] = $nav;
-$templatecontext['firstcollectionlabel'] = $nav->get_collectionlabel();
 echo $OUTPUT->render_from_template('theme_boost_unitec_std/columns2', $templatecontext);
-

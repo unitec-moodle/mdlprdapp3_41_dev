@@ -30,7 +30,7 @@ $blockspost = $OUTPUT->blocks('side-post');
 
 $hassidepre = $PAGE->blocks->region_has_content('side-pre', $OUTPUT);
 $hassidepost = $PAGE->blocks->region_has_content('side-post', $OUTPUT);
-
+// Aditional block areas -- MH
 $topfullwidthtml = $OUTPUT->blocks('top-fullwidth');
 $hastopfullwidth = $PAGE->blocks->region_has_content('top-fullwidth', $OUTPUT);
 $upperfullwidthhtml = $OUTPUT->blocks('upper-fullwidth');
@@ -39,6 +39,11 @@ $lowerfullwidthhtml = $OUTPUT->blocks('lower-fullwidth');
 $haslowerfullwidth = $PAGE->blocks->region_has_content('lower-fullwidth', $OUTPUT);
 $bottomfullwidthhtml = $OUTPUT->blocks('bottom-fullwidth');
 $hasbottomfullwidth = $PAGE->blocks->region_has_content('bottom-fullwidth', $OUTPUT);
+
+$PAGE->set_secondary_navigation(false);
+$renderer = $PAGE->get_renderer('core');
+$header = $PAGE->activityheader;
+$headercontent = $header->export_for_template($renderer);
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -55,7 +60,8 @@ $templatecontext = [
     'haslowerfullwidth' => $haslowerfullwidth,
     'bottomfullwidthblocks' => $bottomfullwidthhtml,
     'hasbottomfullwidth' => $hasbottomfullwidth,
-    'bodyattributes' => $bodyattributes
+    'bodyattributes' => $bodyattributes,
+    'headercontent' => $headercontent,
 ];
 
 echo $OUTPUT->render_from_template('theme_classic_unitec_std/columns', $templatecontext);

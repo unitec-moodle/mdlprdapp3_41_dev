@@ -330,7 +330,7 @@ header .page-header-headings {
 }
 
 // Places Background Banner in header
-@media only screen and (min-width: 1050px) {
+//@media only screen and (min-width: 1050px) {
     header .card {
         background-image: $header-bgimage;
         background-position: right top; // Fractal position
@@ -340,7 +340,7 @@ header .page-header-headings {
         border: 0px;
         margin: 3px 16px 0px 16px;
     }
-}
+//}
 
 // Add overlay image over the Background Banner - Unitec Te Pukenga Logo
     header#page-header div div.card div.card-body {

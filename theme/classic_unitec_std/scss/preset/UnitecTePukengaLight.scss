@@ -314,8 +314,8 @@ header#page-header div.col-12 div.card div.card-body div.d-flex {
     }
 
 // Places Unitec Moodle Logo on the left-hand side of the header
+@media only screen and (min-width: 1050px) {
 header .page-header-headings {
-    height: 65px;
     margin: 5px 0px 0px 15px; // Use this to match the fractal and overlay heights
     background-image: $site-logo;
     background-size: auto 55px;
@@ -323,9 +323,14 @@ header .page-header-headings {
     background-position: left; // Use this to position the Header Logo
     padding: 0px 0px 0px 170px;
     }
+}
+
+header .page-header-headings {
+    height: 65px;
+}
 
 // Places Background Banner in header
-@media only screen and (min-width: 1050px) {
+//@media only screen and (min-width: 1050px) {
     header .card {
         background-image: $header-bgimage;
         background-position: right top; // Fractal position
@@ -335,10 +340,9 @@ header .page-header-headings {
         border: 0px;
         margin: 3px 16px 0px 16px;
     }
-}
+//}
 
 // Add overlay image over the Background Banner - Unitec Te Pukenga Logo
-@media only screen and (min-width: 1050px) {
     header#page-header div div.card div.card-body {
         background-image: $header-overlay; // Background overlay in Pix directory
         background-size: auto 75px;
@@ -346,20 +350,19 @@ header .page-header-headings {
         background-repeat: no-repeat; // Display fractal once only
         background-attachment: scroll; // Scroll with page
     }
-}
 
 // Defines the size and position of the course name in the header
 header .page-header-headings h1 {
     font-size: large !important;
     font-weight: 100 !important;
     color: $header-heading-color;
-    margin-bottom: 0px;
-    padding-bottom: 10px; // lines up course name with the bottom of the logo
+    margin-bottom: 5px;
+    padding-bottom: 5px; // lines up course name with the bottom of the logo
     position: relative;
     top: 100%;
     transform: translateY(-100%);
     display: block;
-    //background-color: $header-heading-bgcolor; //for smaller screens so the course name is still readable over the banner
+    background-color: $header-heading-bgcolor; //for smaller screens so the course name is still readable over the banner
     padding-right: 0px; // cosmetic puposes only - puts 5px space after the last letter in the course name
     margin-left: 20px;
 }

@@ -391,7 +391,7 @@ header .page-header-headings h1 {
 /* Removes the bottom padding from the header region to allow custom blocks directly under the header
 alsp adjusts the page margins to the header */
 header#page-header {
-    padding: 0px 0px 5px 0px !important;
+    padding: 0px 0px 2px 0px !important;
 }
 
 // define the  border under the logo and fractal for Unitec Standard theme
@@ -591,11 +591,6 @@ section.block.block_html.card.mb-3 {
 }
 
 // Upper Nav Drawer
-
-// Remove duplicate block in the right-hand drawer
-div.drawer-right div div section.upper-navdrawer aside {
-    display: none;
-}
 
 .upper-navdrawer {
     width: 100% !important;

@@ -54,27 +54,8 @@
 
     <div class="drawercontent drag-container" data-usertour="scroller">
         
-<!-- ADDITIONAL BLOCK START 1 -->
-<div class="block-region">
-     {{#hasuppernavdrawer}}
-            <section data-region="blocks-column" class="d-print-none upper-navdrawer">
-                {{{ uppernavdrawerblocks }}}
-            </section>
-        {{/hasuppernavdrawer}}
-    </div>
-    <!-- ADDITIONAL BLOCK END 1 -->
-        
         {{$drawercontent}}{{/drawercontent}}
-        
-<!-- ADDITIONAL BLOCK START 3 -->
-<div class="block-region">
-    {{#haslowernavdrawer}}
-        <section data-region="blocks-column" class="d-print-none lower-navdrawer">
-            {{{ lowernavdrawerblocks }}}
-        </section>
-    {{/haslowernavdrawer}}
-</div>
-<!-- ADDITIONAL BLOCK END 3-->
+
     </div>
 </div>
 {{#js}}

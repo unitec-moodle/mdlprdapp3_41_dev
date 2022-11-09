@@ -307,7 +307,8 @@ form.editmode-switch-form div.input-group div.custom-control.custom-switch span.
 
 //edit mode - switch color
 form.editmode-switch-form div.input-group div.custom-control.custom-switch span.custom-control-label:after {
-   background-color: rgba(102,102,102,1.0);
+    background-color: rgba(102,102,102,1.0);
+    
 }
 
 /*######################################################
@@ -338,8 +339,8 @@ div#page div#topofscroll {
     }
 
 // Places Unitec Moodle Logo on the left-hand side of the header
+@media only screen and (min-width: 1050px) {
 header .page-header-headings {
-    height: 65px;
     margin: 5px 0px 0px 15px; // Use this to match the fractal and overlay heights
     background-image: $site-logo;
     background-size: auto 55px;
@@ -347,6 +348,11 @@ header .page-header-headings {
     background-position: left; // Use this to position the Header Logo
     padding: 0px 0px 0px 190px;
     }
+}
+
+header .page-header-headings {
+    height: 65px;
+}
 
 // Places Background Banner in header
 //@media only screen and (min-width: 1050px) {
@@ -362,7 +368,6 @@ header .page-header-headings {
 //}
 
 // Add overlay image over the Background Banner - Unitec Te Pukenga Logo
-@media only screen and (min-width: 1050px) {
     header#page-header div.w-100 {
         background-image: $header-overlay; // Background overlay in Pix directory
         background-size: auto 75px;
@@ -370,15 +375,14 @@ header .page-header-headings {
         background-repeat: no-repeat; // Display fractal once only
         background-attachment: scroll; // Scroll with page
     }
-}
 
 // Defines the size and position of the course name in the header
 header .page-header-headings h1 {
     font-size: large !important;
     font-weight: 100 !important;
     color: $header-heading-color;
-    margin-bottom: 0px;
-    padding-bottom: 10px; // lines up course name with the bottom of the logo
+    margin-bottom: 5px;
+    padding-bottom: 5px; // lines up course name with the bottom of the logo
     position: relative;
     top: 100%;
     transform: translateY(-100%);
@@ -590,12 +594,6 @@ section.block.block_html.card.mb-3 {
 }
 
 // Upper Nav Drawer
-
-// Remove duplicate block in the right-hand drawer
-div.drawer-right div div section.upper-navdrawer aside {
-    display: none;
-}
-
 .upper-navdrawer {
     width: 100% !important;
 }
